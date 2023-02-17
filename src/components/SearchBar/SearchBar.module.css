@@ -1,0 +1,31 @@
+.div {
+    position: absolute;
+    top: 25%; 
+    left: 75%;
+}
+
+input{
+    height: 1.7rem;
+    padding-left: 10px;
+    background: linear-gradient(#040207, rgba(15,20,36,0.5));
+    border-radius: 10px;
+    border: 1px solid white;
+    color: white;
+    outline: none;
+}
+
+.button{
+    margin-left: 10px;
+    height: 1.7rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    padding: 0 15px;
+    background-color: #81D15E;
+    color: white;
+    font-weight: 700;
+}
+
+.button:hover{
+    background-color: #BBEF55;;
+}

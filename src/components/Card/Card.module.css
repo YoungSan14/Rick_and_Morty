@@ -1,0 +1,36 @@
+.hidden{
+    visibility: hidden;
+}
+
+.nameSize{
+    font-size: 1.3rem;
+}
+
+.nameColor{
+    color: #BBEF55;
+}
+
+.border{
+    border: 5px solid #D5EA49;
+}
+
+.opacity{
+    opacity: 0.9;
+}
+
+.borderHover{
+    border: 5px solid #BBEF55;
+    opacity: none;
+}
+
+.male{
+    color: #74C2E7;
+}
+
+.female{
+    color: #AB73A1;
+}
+
+/* .font{
+    font-family: Press Start 2P, Verdana; 
+} */
