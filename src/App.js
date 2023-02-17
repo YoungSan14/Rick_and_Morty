@@ -1,16 +1,17 @@
 import './App.css'
 import React from 'react'
 import { useState } from 'react'
-// import { Routes, Route } from 'react-router-dom'
 import Cards from './components/Cards/Cards.jsx'
 import Nav from './components/Nav/Nav.jsx'
 import BackgroundVideo from './components/BackgroundVideo/BackgroundVideo.jsx'
-// import imgBackground from './assets/logo-rick-and-morty.png'
-// import characters from './data.js'
+// import { Routes, Route } from 'react-router-dom'
+// import Home from './components/Home/Home.jsx'
+
 
 
 
 function App () {
+
   const [ characters , setCharacters ] = useState([]);
 
   const characterContain = (obj) => {
@@ -19,44 +20,50 @@ function App () {
     else return true;
   }
 
+  const onClose = (e) => {
+      const cardId = e.target.parentNode.id;
+      setCharacters(
+          characters.filter((chacter) => chacter.id !== parseInt(cardId))
+      );
+  }
+
   const onSearch = (chacter) => {
     fetch(`https://rickandmortyapi.com/api/character/${chacter}`)
     .then((response) => response.json())
     .then((data) => {
-      // console.log(characterContain(data))
-      if (data.name) {
+    // console.log(characterContain(data))
+    if (data.name) {
         if(!characterContain(data)){
-          setCharacters((oldChars) => (
+            setCharacters((oldChars) => (
             [...oldChars, data]
-          ));
-        }else{
-          window.alert(`${data.name} ya fue ingresado`);
+            ));
+    }else{
+        window.alert(`${data.name} ya fue ingresado`);
         }
-      } else {
+    } else {
         window.alert('No hay personajes con ese ID');
-      }
-    });
-  }
-
-  const onClose = (e) => {
-    const cardId = e.target.parentNode.id;
-    setCharacters(
-      characters.filter((chacter) => chacter.id !== parseInt(cardId))
-    );
+    }
+  });
   }
 
   return (
     <div className='App'>
       <BackgroundVideo />
-        {/* <Route path='/' element={<Nav/>} /> */}
-      {/* <Routes> */}
-        <Nav onSearch={onSearch} />
-      {/* </Routes> */}
-        <div>
-          <Cards characters={characters} onClose={onClose}/>
-        </div>
+      <Nav onSearch={onSearch} />
+      <div>
+        <Cards characters={characters} onClose={onClose}/>
+      </div>
     </div>
   )
 }
+
+
+
+// {/* <Routes>
+// <div>
+//   <Route path='/' element={<Home />}/>
+// </div>
+// </Routes> */}
+
 
 export default App
