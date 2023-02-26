@@ -43,15 +43,8 @@ const DivCard = styled.div`
 export default function Card({id, name, species, gender, image, onClose}) {
 
    const mouseHover = (e) => {
-      // console.log(e.target.children);
-      // console.log(e.currentTarget.children)
-      // console.log(Array.isArray(e.target.children));
-      // console.log(Array.isArray(e.currentTarget.children));
       const childrens = e.currentTarget.children;
-      // childrens.forEach( element => {
-      //    console.log(element);
-      // })
-      // e.currentTarget.classList.add(`${style.color}`)
+
       Object.entries(childrens).forEach( ([key , element]) => {
          if(element.classList.contains(`${style.hidden}`)){
             element.classList.remove(`${style.hidden}`);
@@ -72,7 +65,6 @@ export default function Card({id, name, species, gender, image, onClose}) {
          // console.log()
          if(element.tagName === 'DIV'){
             element.classList.add(`${style.hidden}`);
-            // element.classList.remove(`${style.fontColor}`);
          }else if (element.tagName === 'IMG') {
             element.classList.remove(`${style.borderHover}`);
             element.classList.add(`${style.border}`);
@@ -91,9 +83,14 @@ export default function Card({id, name, species, gender, image, onClose}) {
          <button onClick={onClose}>X</button>
          <h2 className={style.nameSize}>{name}</h2>
          <div className={`${style.hidden}`}>
-            <h2>{species}</h2>
+            <h2 style={{fontSize: '1.2rem'}}>{species}</h2>
             <h2 
-            className={(gender === 'Male') ? `${style.male}` : `${style.female}`} 
+            style={{fontSize: '1.2rem'}}
+            className={
+               (gender === 'Male') ? `${style.male}` 
+               : (gender === 'Female') ? `${style.female}` 
+               : (gender === 'Genderless') ? `${style.genderless}` : `${style.unknown}`               
+            } 
                >
                   {gender}
                </h2>
