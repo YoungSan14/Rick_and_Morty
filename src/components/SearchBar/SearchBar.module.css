@@ -1,7 +1,13 @@
+/* Iconos Bootstrap */
+/* @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"); */
+
 .div {
-    position: absolute;
-    top: 25%; 
-    left: 75%;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    /* left: 78%; */
+    right: 2%;
+    margin-left: 1rem;
 }
 
 input{
@@ -24,6 +30,29 @@ input{
     background-color: #81D15E;
     color: white;
     font-weight: 700;
+}
+/*  usar un icono, cuando el width sea menor a 1000px, o darle opasidad a 'buscar' */
+.button::after{
+    content: 'Buscar';
+}
+
+.iconSearch{
+    position: absolute;
+    opacity: 0;
+}
+
+@media screen and (max-width: 1100px){
+    .button::after{
+        content: '';
+        padding: 0;
+        margin: 0;
+    }
+    .iconSearch{
+        position: relative;
+        opacity: 1;
+        padding: 0;
+        /* margin: 0; */
+    }
 }
 
 .button:hover{

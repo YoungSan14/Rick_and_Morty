@@ -17,6 +17,12 @@ const NavStyled = styled.nav`
     background: linear-gradient(to bottom, #040207, rgba(15,20,36,0));
     z-index: 5; 
     & div{
+        position: absolute;
+    }
+    @media screen and (max-width: 1000px){
+        justify-content: space-between;
+    }
+    & div{
         height: 100%;
     }
     & img{

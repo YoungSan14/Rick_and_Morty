@@ -16,7 +16,14 @@ const DivCards = styled.div`
       align-content: space-around;
       justify-content: space-between;
       flex-wrap: wrap;
-      /* align-items: center; */
+      @media screen and (max-width: 1280px){
+         justify-content: space-evenly;
+         /* justify-content: flex-start; */
+      }
+      //tamaño celular
+      @media screen and (max-width: 767px) {
+         justify-content: center;
+      }
    }
 `;
 
