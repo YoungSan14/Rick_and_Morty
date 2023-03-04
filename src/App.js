@@ -33,15 +33,15 @@ function App () {
     .then((data) => {
     // console.log(characterContain(data))
     if (data.name) {
-        if(!characterContain(data)){
-            setCharacters((oldChars) => (
-            [...oldChars, data]
-            ));
+      if(!characterContain(data)){
+        setCharacters((oldChars) => (
+          [...oldChars, data]
+        ));
     }else{
-        window.alert(`${data.name} ya fue ingresado`);
-        }
+      window.alert(`${data.name} ya fue ingresado`);
+      }
     } else {
-        window.alert('No hay personajes con ese ID');
+      window.alert('No hay personajes con ese ID');
     }
   });
   }

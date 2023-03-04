@@ -9,12 +9,11 @@ const DivCards = styled.div`
    top: 0;
    right: 0;
    left: 0;
-   margin: 10rem;
-   /* padding: 5rem; */
+   margin-top: 10rem;
    & div{
       display: flex;
       align-content: space-around;
-      justify-content: space-between;
+      justify-content: space-around;
       flex-wrap: wrap;
       @media screen and (max-width: 1280px){
          justify-content: space-evenly;
