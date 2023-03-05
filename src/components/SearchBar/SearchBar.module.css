@@ -28,6 +28,7 @@ input{
     cursor: pointer;
     padding: 0 15px;
     background-color: #81D15E;
+    transition: background-color 0.8s linear 0.2s;
     color: white;
     font-weight: 700;
 }

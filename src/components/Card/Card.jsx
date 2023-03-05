@@ -5,7 +5,7 @@ import style from './Card.module.css'
 const DivCard = styled.div`
    display: flex;
    flex-Direction: column;
-   margin: 1rem;
+   margin: 0 1rem 1rem;
    width: 18rem;
    position: relative;
    font-family: 'Press Start 2P'; 
@@ -30,6 +30,7 @@ const DivCard = styled.div`
       padding: 10px 13px;
       border: none;
       background-color: #81D15E;
+      transition: background-color 0.8s linear 0.2s;
       color: white;
       font-size: 1.4rem;
       cursor: pointer;
@@ -48,6 +49,7 @@ const DivCard = styled.div`
       z-index: 0;
       border-radius: 100%;
       object-fit: contain;
+      transition: border-color 0.8s linear 0.2s;
    }
 `;
 

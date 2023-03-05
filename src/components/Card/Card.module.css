@@ -10,6 +10,7 @@
 }
 .nameColor{
     color: #BBEF55;
+    transition: color 0.8s linear 0.2s;
 }
 
 .border{
@@ -17,7 +18,8 @@
 }
 
 .opacity{
-    opacity: 0.9;
+    opacity: 0.8;
+    transition: opacity 1s linear 0.5s;
 }
 
 .borderHover{
