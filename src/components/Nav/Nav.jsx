@@ -4,11 +4,13 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components';
 import SearchBar from '../SearchBar/SearchBar';
 import img from '../../assets/logorickandmorty.png'
+// import { FaBars } from 'react-icons/fa';
 
 const NavStyled = styled.nav`
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Press Start 2P';
     width: 100vw;
     height: 5rem;
     position: fixed;
@@ -31,15 +33,30 @@ const NavStyled = styled.nav`
         opacity: 1;
         cursor: pointer;
     }
+    & h2{
+        display: flex;
+        align-items: center;
+        margin: 0;
+        color: white;
+        font-size: 0.8rem;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 2%;
+        cursor: pointer;
+        transition: color 1s linear 0.2s; 
+        &:hover{
+            color: #BBEF55;
+        }
+    }
 `;
 
 export default function Nav(props){
     return (
         <NavStyled>
-            {/* <NavLink to='/about'>  */}
-                {/* <About /> */}
-                {/* <h2>About</h2> */}
-            {/* </NavLink> */}
+            <NavLink to="/about" >
+                <h2>About</h2>
+            </NavLink>
             <div>
                 <NavLink to='/' >
                     <img src={img} alt='logo-rick-and-morty' />

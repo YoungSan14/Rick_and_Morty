@@ -4,7 +4,8 @@ import { useState } from 'react'
 import Cards from './components/Cards/Cards.jsx'
 import Nav from './components/Nav/Nav.jsx'
 import BackgroundVideo from './components/BackgroundVideo/BackgroundVideo.jsx'
-// import { Routes, Route } from 'react-router-dom'
+import About from './components/About/About'
+import { Routes, Route } from 'react-router-dom'
 // import Home from './components/Home/Home.jsx'
 
 
@@ -51,7 +52,10 @@ function App () {
       <BackgroundVideo />
       <Nav onSearch={onSearch} />
       <div>
-        <Cards characters={characters} onClose={onClose}/>
+        <Routes>
+          <Route path="/" element={<Cards characters={characters} onClose={onClose}/>} />
+          <Route path="/about" element={<About />} />
+        </Routes>
       </div>
     </div>
   )
@@ -65,5 +69,8 @@ function App () {
 // </div>
 // </Routes> */}
 
+// {/* <Routes>
+// <Route path='/' render={() => {<Cards characters={characters} onClose={onClose}/>} } />
+// </Routes> */}
 
 export default App

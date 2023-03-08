@@ -1,7 +1,11 @@
 .hidden{
     visibility: hidden;
+    /* transition: visibility 0.8s linear 0.2s; */
 }
-
+.visible{
+    visibility: visible;
+    transition: visibility 1s linear 1s;
+}
 .nameSize{
     font-size: 1.3rem;
 }
@@ -18,8 +22,7 @@
 }
 
 .opacity{
-    opacity: 0.8;
-    transition: opacity 1s linear 0.5s;
+    opacity: 0.7;
 }
 
 .borderHover{

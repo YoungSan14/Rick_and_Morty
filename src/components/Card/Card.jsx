@@ -11,6 +11,7 @@ const DivCard = styled.div`
    font-family: 'Press Start 2P'; 
    color: white;
    cursor: pointer;
+   transition: visibility 0.8s linear 0.2s;
    //tamaño celular
    @media screen and (max-width: 1000px) {
       width: 15rem;
@@ -50,6 +51,7 @@ const DivCard = styled.div`
       border-radius: 100%;
       object-fit: contain;
       transition: border-color 0.8s linear 0.2s;
+      transition: opacity 0.8s linear 0.2s;
    }
 `;
 
@@ -62,6 +64,7 @@ export default function Card({id, name, species, gender, image, onClose}) {
       Object.entries(childrens).forEach( ([key , element]) => {
          if(element.classList.contains(`${style.hidden}`)){
             element.classList.remove(`${style.hidden}`);
+            element.classList.add(`${style.visible}`)
          }else if (element.tagName === 'IMG') {
             element.classList.add(`${style.borderHover}`);
             element.classList.remove(`${style.border}`);
@@ -78,6 +81,7 @@ export default function Card({id, name, species, gender, image, onClose}) {
       Object.entries(childrens).forEach( ([key , element]) => {
          // console.log()
          if(element.tagName === 'DIV'){
+            element.classList.remove(`${style.visible}`);
             element.classList.add(`${style.hidden}`);
          }else if (element.tagName === 'IMG') {
             element.classList.remove(`${style.borderHover}`);
