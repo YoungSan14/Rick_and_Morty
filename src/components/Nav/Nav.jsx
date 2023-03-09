@@ -21,9 +21,6 @@ const NavStyled = styled.nav`
     & div{
         position: absolute;
     }
-    @media screen and (max-width: 1000px){
-        justify-content: space-between;
-    }
     & div{
         height: 100%;
     }
@@ -44,9 +41,15 @@ const NavStyled = styled.nav`
         bottom: 0;
         left: 2%;
         cursor: pointer;
-        transition: color 1s linear 0.2s; 
+        transition: color 0.8s linear 0.2s; 
         &:hover{
             color: #BBEF55;
+        }
+    }
+    @media screen and (max-width: 1000px){
+        justify-content: space-between;
+        & h2{
+            left: 60%;
         }
     }
 `;
