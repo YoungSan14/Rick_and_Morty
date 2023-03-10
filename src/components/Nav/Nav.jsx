@@ -60,9 +60,9 @@ export default function Nav(props){
             <NavLink to="/about" >
                 <h2>About</h2>
             </NavLink>
-            <div>
+            <div className='divImg'>
                 <NavLink to='/' >
-                    <img src={img} alt='logo-rick-and-morty' />
+                    <img src={img} alt='logo-rick-and-morty' draggable='false'/>
                 </NavLink>
             </div>
             <SearchBar onSearch={props.onSearch}/>

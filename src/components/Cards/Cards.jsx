@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Card from '../Card/Card';
+// import { Route } from 'react-router-dom';
 
 const DivCards = styled.div`
    /* margin: 10rem; */
@@ -35,13 +36,13 @@ export default function Cards(props) {
             {
                characters.map((o) => 
                   <Card 
-                  id={o.id}
-                  name={o.name}
-                  species={o.species}
-                  gender={o.gender}
-                  image={o.image}
-                  onClose={onClose}
-                  key={o.id}
+                     id={o.id}
+                     name={o.name}
+                     species={o.species}
+                     gender={o.gender}
+                     image={o.image}
+                     onClose={onClose}
+                     key={o.id}
                   />
                )
             }

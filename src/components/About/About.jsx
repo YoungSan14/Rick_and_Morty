@@ -57,14 +57,14 @@ const DivStyled = styled.div`
 export default function About(){
     return (
         <DivStyled>
-        <img className='foto' src={ImgAbout} alt="img-creador" />
+        <img className='foto' src={ImgAbout} alt='img-creador' draggable='false'/>
             <div>
                 By: <h2>Santiago Martin Suarez</h2>
                 <p>Este proyecto lo realice con todo lo aprendido de HTML, CSS, JavaScript y React, gracias a los cursos de:</p>
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-                    <img src={logoFreeCodeCamp} className='logos' alt='logo-freecodecamp'/>
-                    <img src={logoOpenBootCamp} className='logos' alt='logo-openbotcamp'/>
-                    <img src={logoSoyHenry} className='logos' alt='logo-soyhenry'/>
+                    <img src={logoFreeCodeCamp} className='logos' alt='logo-freecodecamp' draggable='false'/>
+                    <img src={logoOpenBootCamp} className='logos' alt='logo-openbotcamp' draggable='false'/>
+                    <img src={logoSoyHenry} className='logos' alt='logo-soyhenry' draggable='false'/>
                 </div>
                 <div>
                     <p>Cuenta de Linkedin</p>

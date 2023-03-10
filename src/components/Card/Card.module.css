@@ -7,10 +7,13 @@
     transition: visibility 1s linear 1s;
 }
 .nameSize{
-    font-size: 1.3rem;
+    font-size: 0.8rem;
+    text-decoration: none;
+    text-decoration-color: none;
+    color: white;
 }
 .otherSize{
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 .nameColor{
     color: #BBEF55;
@@ -52,10 +55,10 @@
 
 @media screen and (max-width: 767px) {
     .nameSize{
-        font-size: 0.9rem;
+        font-size: 0.6rem;
     }
     .otherSize{
-        font-size: 0.9rem;
+        font-size: 0.7rem;
     }
 }
 

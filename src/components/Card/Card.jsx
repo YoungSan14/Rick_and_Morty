@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import style from './Card.module.css'
+import { Link } from 'react-router-dom'
+// import Detail from '../Detail/Detail'
 /* VERDE PORTAL > #BBEF55 #84E946 #D5EA49 #81D15E*/
 
 const DivCard = styled.div`
@@ -121,10 +123,10 @@ export default function Card({id, name, species, gender, image, onClose}) {
    return (
       <DivCard id={id} onMouseEnter={mouseHover} onMouseLeave={mouseOut}>
          <img  src={image} draggable='false' alt={name} className={`${style.border} ${style.opacity}`}/>
-         {/* <div>
-         </div> */}
          <button onClick={onClose}>X</button>
-         <h2 className={style.nameSize}>{name}</h2>
+         <Link to={`/detail/${id}`} className={style.nameSize}>
+            <h2 >{name}</h2>
+         </Link>
          <div className={`${style.hidden}`}>
             <h2 className={style.otherSize}>{species}</h2>
             <h2 className={genderStyle(gender)}>{gender}</h2>

@@ -56,6 +56,16 @@ input{
     }
 }
 
+@media screen and (max-width: 900px){
+    input{
+        width: 50%;
+    }
+    .div{
+        justify-content: flex-end;
+        margin-left: 0;
+    }
+}
+
 .button:hover{
     background-color: #BBEF55;;
 }
