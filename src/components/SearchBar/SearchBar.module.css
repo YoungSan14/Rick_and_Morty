@@ -28,13 +28,17 @@ input{
     cursor: pointer;
     padding: 0 15px;
     background-color: #81D15E;
-    transition: background-color 0.8s linear 0.2s;
+    transition: background-color 0.5s linear 0.2s;
     color: white;
     font-weight: 700;
 }
 /*  usar un icono, cuando el width sea menor a 1000px, o darle opasidad a 'buscar' */
 .button::after{
     content: 'Buscar';
+}
+
+.button:hover{
+    background-color: #BBEF55;;
 }
 
 .iconSearch{
@@ -64,8 +68,4 @@ input{
         justify-content: flex-end;
         margin-left: 0;
     }
-}
-
-.button:hover{
-    background-color: #BBEF55;;
 }

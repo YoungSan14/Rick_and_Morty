@@ -41,7 +41,7 @@ const NavStyled = styled.nav`
         bottom: 0;
         left: 2%;
         cursor: pointer;
-        transition: color 0.8s linear 0.2s; 
+        transition: color 0.5s linear 0.2s; 
         &:hover{
             color: #BBEF55;
         }

@@ -7,6 +7,7 @@ import Nav from './components/Nav/Nav.jsx'
 import BackgroundVideo from './components/BackgroundVideo/BackgroundVideo.jsx'
 import About from './components/About/About'
 import Detail from './components/Detail/Detail'
+import Form  from './components/Form/Form'
 // import Home from './components/Home/Home.jsx'
 
 const URL = "https://be-a-rym.up.railway.app/api";
@@ -55,6 +56,7 @@ function App () {
     <div className='App'>
       <BackgroundVideo />
       <Nav onSearch={onSearch} />
+      <Form />
       <div>
         <Routes>
           <Route path="/" element={<Cards characters={characters} onClose={onClose}/>} />
