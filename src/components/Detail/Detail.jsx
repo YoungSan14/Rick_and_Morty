@@ -34,7 +34,7 @@ const DivStyled = styled.div`
         color: #6E8774;
     }
     .unknown{
-        color: #861D21;
+        color: #ef233c;
     }
 `;
 
@@ -67,6 +67,10 @@ export default function Detail(){
         if(gender === 'unknown') return 'unknown'
     }
 
+    const originStyle = (origin) => {
+        if(origin === 'unknown') return 'unknown'
+    }
+
     return (
         <DivStyled>
             {           
@@ -77,7 +81,7 @@ export default function Detail(){
                         <h1 style={{color: '#BBEF55'}}>{chacter.name}</h1>
                         Genero:<h2 className={genderStyle(chacter.gender)}>{chacter.gender}</h2>  
                         Especie:<h2>{chacter.species}</h2>
-                        Origen:<h2>{chacter.origin?.name}</h2>
+                        Origen:<h2 className={originStyle(chacter.origin?.name)}>{chacter.origin?.name}</h2>
                     </div>
                 </>
             )

@@ -1,10 +1,9 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-// import About from '../About/About'
+import React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import SearchBar from '../SearchBar/SearchBar';
 import img from '../../assets/logorickandmorty.png'
-// import { FaBars } from 'react-icons/fa';
+
 
 const NavStyled = styled.nav`
     display: flex;
@@ -54,18 +53,22 @@ const NavStyled = styled.nav`
     }
 `;
 
-export default function Nav(props){
+export default function Nav({ onSearch }){
+    const location = useLocation();
+
     return (
         <NavStyled>
             <NavLink to="/about" >
                 <h2>About</h2>
             </NavLink>
             <div className='divImg'>
-                <NavLink to='/' >
+                <NavLink to='/home' >
                     <img src={img} alt='logo-rick-and-morty' draggable='false'/>
                 </NavLink>
             </div>
-            <SearchBar onSearch={props.onSearch}/>
+            {
+                (location.pathname === '/home') && <SearchBar onSearch={onSearch}/>
+            }
         </NavStyled>
     )
 }
