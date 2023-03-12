@@ -15,17 +15,32 @@ const DivStyled = styled.div`
         align-items: start;
         border-radius: 20px;
         padding: 5rem;
-        /* background-image: radial-gradient(circle, rgba(36, 49, 96, 0.9), rgba(29, 41, 79, 0.9), rgba(23, 33, 62, 0.9), rgba(18, 26, 46, 0.9), rgba(13, 17, 31, 0.9)); */
-        background-image: linear-gradient(to top, rgba(187, 239, 85, 0.9), rgba(0, 189, 127, 0.9), rgba(0, 129, 137, 0.9), rgba(0, 69, 98, 0.9), rgba(13, 17, 31, 0.9));
+        background-image: radial-gradient(circle, rgba(36, 49, 96, 0.9), rgba(29, 41, 79, 0.9), rgba(23, 33, 62, 0.9), rgba(18, 26, 46, 0.9), rgba(13, 17, 31, 0.9));
+        /* background-image: linear-gradient(to top, rgba(187, 239, 85, 0.9), rgba(0, 189, 127, 0.9), rgba(0, 129, 137, 0.9), rgba(0, 69, 98, 0.9), rgba(13, 17, 31, 0.9)); */
+        h2{
+            /* margin-top: 1rem; */
+            /* font-family: 'Press Start 2P';
+            font-size: .9rem; */
+            margin-bottom: 1rem;
+        }
         label{
-            margin: 2rem 1rem 0 0;
-            padding-bottom: 1rem;
+            margin-top: .5rem;
+            /* padding-bottom: 1rem; */
+        }
+        input{
+            height: 1.7rem;
+            padding-left: 10px;
+            background: linear-gradient(#040207, rgba(15,20,36,0.5));
+            border-radius: 10px;
+            border: 1px solid white;
+            color: white;
+            outline: none;
         }
         button{
         align-self: center;
         padding: 10px;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
         border-radius: 10px;
         border: none;
         cursor: pointer;
@@ -46,23 +61,25 @@ const DivStyled = styled.div`
     .invalid{
         border: 2px solid #ef233c;
     }
-    }
+}
 `;
 
-const validation = (form, error, setError) => {
+const validation = (inputType, form, error, setError) => {
     // const expReg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    if (form.email){
+    if (inputType === 'email'){
         const expRegEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
         if(!expRegEmail.test(form.email)){
-            setError({ ...error, email: 'El email ingresado no es valido' })
+            if(form.email === '') setError({ ...error, email: 'ejemplo@gmail.com'})
+            else setError({ ...error, email: 'El email ingresado no es valido' })
         }else{
             setError({ ...error, email: ''})
         }
-    }
-    else{
+    }else if(inputType === 'password'){
         const expRegPass = /^(?=.*\d)[a-zA-Z\d]{6,10}$/i;
         if(!expRegPass.test(form.password)){
-            setError({ ...error, password: 'Deve tener 6 caracteres y al menos un numero'})
+            if(form.password === '') setError({ ...error, password: 'Deve tener 6 caracteres o mas' })
+            else if(!form.password.match(/[0-9]/i)) setError({ ...error, password: 'Deve tener al menos un numero'})
+            else if(form.password.length > 10) setError ({ ...error, password: 'Como maximo 10 caracteres' })
         }else{
             setError({ ...error, password: ''})
         }
@@ -74,62 +91,65 @@ export default function Form(){
         email: '',
         password: '',
     });
-    const [ error , setError ] = useState({
-        email: '',
-        password: '',
-    });
     const [ changeForm , setChangeForm ] = useState({
         email: false,
         password: false,
     })
-
+    const [ error , setError ] = useState({
+        email: '',
+        password: '',
+    });
+    
     const handleChange = (e) =>{
         const inputType = e.target.type;
         const inputValue = e.target.value;
         // console.log(form[inputType])
         setForm({ ...form, [inputType]: inputValue});
-        setChangeForm({ ...changeForm, [inputType]: true})
-        validation({...form, [inputType]: inputValue}, error, setError);
+        validation( inputType, {...form, [inputType]: inputValue}, error, setError);
+        setChangeForm({ ...changeForm, [inputType]: true});
         // if(form[inputType] === ""){setChangeForm({ ...changeForm, [inputType]: false})}
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        alert('Inicio Exitoso!!');
     }
+
     return (
         <DivStyled>
-            <form>
+            <form onSubmit={handleSubmit}>
+            <h2>Iniciar Sesión</h2>
                 <label>Usuario:</label>
-                    <input 
-                        type='email' 
-                        name='username' 
-                        onChange={handleChange} 
-                        value={form.email}
-                        className={(!changeForm.email) ? 'base' : (!error.email) ? 'valid' : 'invalid'}
-                    />
-                    {/* {(error.email) ? (
-                        <span style={{fontSize: '14px', color: '#ef233c', position: 'absolute', top: '33.5%'}}>
-                            {`${error.email}`}
-                        </span>
-                    ):(
-                        <></>
-                    )} */}
+                {(error.email) ? (
+                    <span style={{paddingBottom: '5px', fontSize: '12px', color: '#ef233c'}}>
+                        {`${error.email}`}
+                    </span>
+                ):(
+                    <span style={{paddingBottom: '5px', fontSize: '12px', opacity: '0'}}>error</span>
+                )}
+                <input 
+                    type='email' 
+                    name='username' 
+                    onChange={handleChange} 
+                    value={form.email}
+                    className={(!changeForm.email) ? 'base' : (!error.email) ? 'valid' : 'invalid'}
+                />
                 <label>Contraseña:</label>
-                    <input 
-                        type='password' 
-                        name='password' 
-                        onChange={handleChange} 
-                        value={form.password}
-                        className={(!changeForm.password) ? 'base' : (!error.password) ? 'valid' : 'invalid'}
-                    />   
-                    {/* {(error.password) ? (
-                        <span style={{fontSize: '14px', color: '#ef233c', position: 'absolute', bottom: '47.5%'}}>
-                            {`${error.password}`}
-                        </span>
-                    ):(
-                        <></>
-                    )} */}
-                <button type='submit' onClick={handleSubmit}>Registrarse</button>
+                {(error.password) ? (
+                    <span style={{paddingBottom: '5px', fontSize: '12px', color: '#ef233c', position: 'relative'}}>
+                        {`${error.password}`}
+                    </span>
+                ):(
+                    <span style={{paddingBottom: '5px', fontSize: '12px', opacity: '0'}}>error</span>
+                )}
+                <input 
+                    type='password' 
+                    name='password' 
+                    onChange={handleChange} 
+                    value={form.password}
+                    className={(!changeForm.password) ? 'base' : (!error.password) ? 'valid' : 'invalid'}
+                />   
+                <button type='submit'>Iniciar Sesión</button>
             </form>
         </DivStyled>
     )
