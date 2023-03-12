@@ -86,7 +86,7 @@ const validation = (inputType, form, error, setError) => {
     }
 }
 
-export default function Form(){
+export default function Form({ login }){
     const [ form , setForm ] = useState({
         email: '',
         password: '',
@@ -107,17 +107,16 @@ export default function Form(){
         setForm({ ...form, [inputType]: inputValue});
         validation( inputType, {...form, [inputType]: inputValue}, error, setError);
         setChangeForm({ ...changeForm, [inputType]: true});
-        // if(form[inputType] === ""){setChangeForm({ ...changeForm, [inputType]: false})}
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        alert('Inicio Exitoso!!');
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     login();
+    // }
 
     return (
         <DivStyled>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={() => login(form)}>
             <h2>Iniciar Sesión</h2>
                 <label>Usuario:</label>
                 {(error.email) ? (

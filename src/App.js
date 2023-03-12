@@ -1,7 +1,6 @@
 import './App.css'
-import React from 'react'
-import { useState } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import Cards from './components/Cards/Cards.jsx'
 import Nav from './components/Nav/Nav.jsx'
 import BackgroundVideo from './components/BackgroundVideo/BackgroundVideo.jsx'
@@ -18,17 +17,24 @@ const KEY = "dd16337f0a28.9e14f74e16d275d648d6";
 function App () {
   const [ characters , setCharacters ] = useState([]);
   const [ access , setAccess ] = useState(false);
-  const username = 'santy@gmail.com';
+  const email = 'santy@gmail.com';
   const password = 'carp91218';
   const location = useLocation();
+  const navigate = useNavigate();
 
   const login = (userData) => {
-    if (userData.username === username && userData.password === password){
+    if (userData.email === email && userData.password === password){
+      alert('Inicio Exitoso!!');
       setAccess(true);
+      navigate('/home', {replace: true})
     }else{
       alert ('El usuario o la contraseña son incorrectos');
     }
   }
+
+  useEffect(() => {
+    if(!access) navigate('/');
+  }, [access, navigate]); 
 
   const characterContain = (obj) => {
     const exist = characters.filter((c) => c.id === obj.id);
@@ -68,7 +74,7 @@ function App () {
       <BackgroundVideo />
       <div>
       {
-        (location.pathname === '/') ? <Form /> 
+        (location.pathname === '/') ? <Form login={login}/> 
         : (
         <>
           <Nav onSearch={onSearch}/>
