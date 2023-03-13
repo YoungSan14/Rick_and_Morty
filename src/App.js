@@ -1,6 +1,6 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
+import { Routes, Route, useLocation, useNavigate} from 'react-router-dom'
 import Cards from './components/Cards/Cards.jsx'
 import Nav from './components/Nav/Nav.jsx'
 import BackgroundVideo from './components/BackgroundVideo/BackgroundVideo.jsx'
@@ -26,15 +26,16 @@ function App () {
     if (userData.email === email && userData.password === password){
       alert('Inicio Exitoso!!');
       setAccess(true);
-      navigate('/home', {replace: true})
+      navigate('/home', {replace: true});
     }else{
       alert ('El usuario o la contraseña son incorrectos');
     }
   }
 
   useEffect(() => {
+    if (access && location.pathname === '/') navigate('/home', { replace: true });
     if(!access) navigate('/');
-  }, [access, navigate]); 
+  }, [access, location, navigate]); 
 
   const characterContain = (obj) => {
     const exist = characters.filter((c) => c.id === obj.id);
@@ -74,7 +75,7 @@ function App () {
       <BackgroundVideo />
       <div>
       {
-        (location.pathname === '/') ? <Form login={login}/> 
+        (location.pathname === '/' && !access) ? <Form login={login}/> 
         : (
         <>
           <Nav onSearch={onSearch}/>
