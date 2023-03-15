@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Card from '../Card/Card';
+
 // import { Route } from 'react-router-dom';
 
 const DivCards = styled.div`

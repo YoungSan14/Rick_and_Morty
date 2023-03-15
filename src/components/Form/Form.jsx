@@ -1,10 +1,12 @@
 import { useState } from "react"
 import styled from "styled-components"
+import img from "../../assets/logorickandmorty.png"
 
 const DivStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     position: relative;
     height: 100vh;
     width: 100vw;
@@ -109,13 +111,11 @@ export default function Form({ login }){
         setChangeForm({ ...changeForm, [inputType]: true});
     }
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     login();
-    // }
-
     return (
         <DivStyled>
+            <div>
+                <img src={img} alt='logo-rick-and-morty'/>
+            </div>
             <form onSubmit={() => login(form)}>
             <h2>Iniciar Sesión</h2>
                 <label>Usuario:</label>

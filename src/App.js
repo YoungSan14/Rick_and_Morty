@@ -24,7 +24,7 @@ function App () {
 
   const login = (userData) => {
     if (userData.email === email && userData.password === password){
-      alert('Inicio Exitoso!!');
+      // alert('Inicio Exitoso!!');
       setAccess(true);
       navigate('/home', {replace: true});
     }else{
@@ -32,10 +32,16 @@ function App () {
     }
   }
 
+  const logout = () => {
+    setAccess(false);
+    navigate('/', { replace: true });
+  };
+
   useEffect(() => {
     if (access && location.pathname === '/') navigate('/home', { replace: true });
-    if(!access) navigate('/');
-  }, [access, location, navigate]); 
+    if (!access && location.pathname === '/home') navigate('/', {replace: true});
+    if (!access) navigate('/');
+  }, [access, location, navigate]);
 
   const characterContain = (obj) => {
     const exist = characters.filter((c) => c.id === obj.id);
@@ -78,11 +84,21 @@ function App () {
         (location.pathname === '/' && !access) ? <Form login={login}/> 
         : (
         <>
-          <Nav onSearch={onSearch}/>
+          <Nav onSearch={onSearch} logout={logout}/>
           <Routes>
-            <Route path="/home" element={<Cards characters={characters} onClose={onClose} />}/>
-            <Route path="/about" element={<About />}/>
-            <Route path="/detail/:idChacter" element={<Detail />}/>
+            {/* <Route path="/" element={<Form />}/> */}
+            <Route path="/home" element={
+              (access) ? <Cards characters={characters} onClose={onClose} />
+              : navigate ("/", {replace: true})
+            }/>
+            <Route path="/about" element={
+              (access) ? <About />
+              : navigate ("/", {replace: true})
+            }/>
+            <Route path="/detail/:idChacter" element={
+              (access) ? <Detail />
+              : navigate ("/", {replace: true})
+            }/>
           </Routes>
         </>
         )
@@ -93,14 +109,3 @@ function App () {
 }
 
 export default App
-
-
-// {/* <Routes>
-// <div>
-//   <Route path='/' element={<Home />}/>
-// </div>
-// </Routes> */}
-
-// {/* <Routes>
-// <Route path='/' render={() => {<Cards characters={characters} onClose={onClose}/>} } />
-// </Routes> */}

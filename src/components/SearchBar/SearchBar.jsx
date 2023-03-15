@@ -9,11 +9,16 @@ export default function SearchBar({ onSearch }) {
       setSearch(inputValue);
    }
    return (
-      <div className={SearchBarStyle.div}>
+      // <div className={SearchBarStyle.div}>
+      <>
          <input 
             type='search' 
             value={search} 
             onChange={handleChange} 
+            onKeyDown={(event) => {
+                  if (event.key === 'Enter') onSearch(search);
+               }
+            }
             placeholder='Ingrese un Numero de ID'
          />
          <button 
@@ -22,6 +27,7 @@ export default function SearchBar({ onSearch }) {
          >
          <FaSearch className={SearchBarStyle.iconSearch}/>
       </button>
-      </div>
+      </>
+      // </div>
    );
 }

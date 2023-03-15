@@ -1,14 +1,14 @@
 /* Iconos Bootstrap */
 /* @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"); */
 
-.div {
+/* .div {
     display: flex;
     align-items: center;
     position: sticky;
-    /* left: 78%; */
+    left: 78%;
     right: 2%;
     margin-left: 1rem;
-}
+} */
 
 input{
     height: 1.7rem;
@@ -21,7 +21,7 @@ input{
 }
 
 .button{
-    margin-left: 10px;
+    /* margin-left: 10px; */
     height: 1.7rem;
     border-radius: 10px;
     border: none;
@@ -56,16 +56,7 @@ input{
         position: relative;
         opacity: 1;
         padding: 0;
-        /* margin: 0; */
+        margin: 0;
     }
 }
 
-@media screen and (max-width: 900px){
-    input{
-        width: 50%;
-    }
-    .div{
-        justify-content: flex-end;
-        margin-left: 0;
-    }
-}
