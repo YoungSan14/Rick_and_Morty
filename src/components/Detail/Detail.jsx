@@ -94,8 +94,3 @@ export default function Detail(){
         </DivStyled>
     )
 }
-
-
-
-    // {/* console.log(chacter?.name) */}
-

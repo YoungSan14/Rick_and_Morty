@@ -38,9 +38,10 @@ function App () {
   };
 
   useEffect(() => {
-    if (access && location.pathname === '/') navigate('/home', { replace: true });
-    if (!access && location.pathname === '/home') navigate('/', {replace: true});
     if (!access) navigate('/');
+    if (access && location.pathname === '/') navigate('/home', { replace: true });
+    // una vez que me logue, y este en la ruta '/home', NO pueda volver a la ruta '/'
+    // if (!access && location.pathname === '/home') navigate('/', {replace: true}); 
   }, [access, location, navigate]);
 
   const characterContain = (obj) => {

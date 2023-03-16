@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import style from './Card.module.css'
 import { Link } from 'react-router-dom'
-// import Detail from '../Detail/Detail'
+import { GiCrownedHeart } from 'react-icons/gi'
+// GiPortal,
 /* VERDE PORTAL > #BBEF55 #84E946 #D5EA49 #81D15E*/
 
 const DivCard = styled.div`
@@ -9,6 +10,7 @@ const DivCard = styled.div`
    flex-Direction: column;
    margin: 0 1rem 1rem;
    width: 18rem;
+   /* height: 18rem; */
    position: relative;
    font-family: 'Press Start 2P'; 
    color: white;
@@ -21,31 +23,43 @@ const DivCard = styled.div`
          width: 15rem;
       }
    }
-   & div {
+   .cardBody {
+      /* position: relative; */
       display: flex; 
       flex-direction: column;
+      /* align-items: flex-start; */
    }
-   & button{
+   .cardButtons{
       position: absolute;
-      border-radius: 100%;
-      left: 45%;
-      bottom: 95%;
-      padding: 10px 13px;
-      border: none;
-      background-color: #81D15E;
-      transition: background-color 0.8s linear 0.2s;
-      color: white;
-      font-size: 1.4rem;
-      cursor: pointer;
-      &:hover{
-         border: 3px none #BBEF55;
-         background-color: #BBEF55;
+      visibility: visible;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      /* top: 5%; */
+      width: 100%;
+      height: 100%;
+      .btn{
+         font-size: 1.4rem;
+         cursor: pointer;
+         padding: 10px 13px;
+         border: none;
+         border-radius: 100%;
+         background-color: #81D15E;
+         transition: background-color 0.8s linear 0.2s;
+         color: white;
+         &:hover{
+            border: 3px none #BBEF55;
+            background-color: #BBEF55;
+         }
       }
-      //tamaño celular
-      @media screen and (max-width: 1000px){
-         font-size: 1rem;
-         left: 42.5%;
-         bottom: 95%;  
+      .exitBtn{
+         top: 50%;
+      }
+      .favBtn{
+
+      }
+      .favBtn:hover{
+         color: #ef233c;
       }
    }
    & img{
@@ -123,11 +137,14 @@ export default function Card({id, name, species, gender, image, onClose}) {
    return (
       <DivCard id={id} onMouseEnter={mouseHover} onMouseLeave={mouseOut}>
          <img  src={image} draggable='false' alt={name} className={`${style.border} ${style.opacity}`}/>
-         <button onClick={onClose}>X</button>
+         <div className='cardButtons'>
+            <button className='btn exitBtn' onClick={onClose}>X</button>
+            <button className='btn favBtn'><GiCrownedHeart /></button>
+         </div>
          <Link to={`/detail/${id}`} className={style.nameSize}>
-            <h2 >{name}</h2>
+            <h2>{name}</h2>
          </Link>
-         <div className={`${style.hidden}`}>
+         <div className={`${style.hidden} cardBody`}>
             <h2 className={style.otherSize}>{species}</h2>
             <h2 className={genderStyle(gender)}>{gender}</h2>
          </div>
