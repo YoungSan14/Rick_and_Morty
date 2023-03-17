@@ -9,8 +9,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case ADD_CHACTER_FAVORITES:
             return{
                 ...state,
-                myFavorites: state.myFavorites.push(payload)
-                // myFavorites: [...state.myFavorites, payload]
+                // myFavorites: state.myFavorites.push(payload)
+                myFavorites: [...state.myFavorites, payload]
             }
         case DELETE_CHACTER_TO_FAVORITES:
             return{

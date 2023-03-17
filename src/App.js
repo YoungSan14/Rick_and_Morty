@@ -51,7 +51,7 @@ function App () {
   }
 
   const onClose = (e) => {
-      const cardId = e.target.parentNode.id;
+      const cardId = e.target.id;
       setCharacters(
           characters.filter((chacter) => chacter.id !== cardId)
       );

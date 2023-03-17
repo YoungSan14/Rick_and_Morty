@@ -1,16 +1,16 @@
 import styled from 'styled-components'
 import style from './Card.module.css'
 import { Link } from 'react-router-dom'
-import { GiCrownedHeart } from 'react-icons/gi'
+import { GiBarbedStar } from 'react-icons/gi'
 // GiPortal,
 /* VERDE PORTAL > #BBEF55 #84E946 #D5EA49 #81D15E*/
+
 
 const DivCard = styled.div`
    display: flex;
    flex-Direction: column;
    margin: 0 1rem 1rem;
    width: 18rem;
-   /* height: 18rem; */
    position: relative;
    font-family: 'Press Start 2P'; 
    color: white;
@@ -23,44 +23,47 @@ const DivCard = styled.div`
          width: 15rem;
       }
    }
-   .cardBody {
-      /* position: relative; */
+   & div {
       display: flex; 
       flex-direction: column;
-      /* align-items: flex-start; */
    }
-   .cardButtons{
-      position: absolute;
-      visibility: visible;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      /* top: 5%; */
-      width: 100%;
-      height: 100%;
-      .btn{
-         font-size: 1.4rem;
-         cursor: pointer;
-         padding: 10px 13px;
-         border: none;
-         border-radius: 100%;
+   .btn{
+      border-radius: 100%;
+      padding: 10px 13px;
+      border: none;
+      /* background-color: #81D15E; */
+      transition: background-color 0.8s linear 0.2s;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+      &:hover{
+         border: 3px none #BBEF55;
+         background-color: #BBEF55;
+      }
+      //tamaño celular
+      @media screen and (max-width: 1000px){
+         font-size: 1rem;
+         left: 42.5%;
+         bottom: 95%;  
+      }
+   }
+   .exitBtn{
          background-color: #81D15E;
-         transition: background-color 0.8s linear 0.2s;
-         color: white;
-         &:hover{
-            border: 3px none #BBEF55;
-            background-color: #BBEF55;
-         }
+         position: absolute;
+         top: 0;
+         left: 50%;
+         transform: translate(-50%, -50%);
       }
-      .exitBtn{
-         top: 50%;
-      }
-      .favBtn{
-
-      }
-      .favBtn:hover{
-         color: #ef233c;
-      }
+   .favBtn{
+      /* font-size: 2rem; */
+      background-color: #D5EA49;
+      position: absolute;
+      bottom: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+   }
+   .favBtn:hover{
+      color: #ef233c;
    }
    & img{
       z-index: 0;
@@ -70,7 +73,6 @@ const DivCard = styled.div`
       transition: opacity 0.8s linear 0.2s;
    }
 `;
-
 
 export default function Card({id, name, species, gender, image, onClose}) {
 
@@ -89,7 +91,6 @@ export default function Card({id, name, species, gender, image, onClose}) {
             element.classList.add(`${style.nameColor}`);
          }
       })
-         // Card_hidden__Lshpu
    }
 
    const mouseOut = (e) => {
@@ -116,31 +117,13 @@ export default function Card({id, name, species, gender, image, onClose}) {
       if(gender === 'unknown') return `${style.unknown} ${style.otherSize}`
    }
 
-//    const speciesEmogis = (species) => {
-//    if(species === 'Human') return `💪🏼${species}`
-//    if(species === 'Alien') return `👽${species}`
-//    if(species === 'Humanoid') return `👾${species}`
-//    if(species === 'Poopybutthole') return `🌌${species}` 
-//    // 'Human' 💪🏼
-//    // 'Alien' 👽
-//    // 'Humanoid' 👾
-//    // 'Poopybutthole' 🌌
-//    // 'Mythological' 🐉
-//    // 'Unknown' 
-//    // 'Animal' 🐻
-//    // 'Disease' 🦠
-//    // 'Robot' 🤖 🦾
-//    // 'Cronenberg' 🧪
-//    // 'Planet' 🪐
-// }
+
 
    return (
       <DivCard id={id} onMouseEnter={mouseHover} onMouseLeave={mouseOut}>
          <img  src={image} draggable='false' alt={name} className={`${style.border} ${style.opacity}`}/>
-         <div className='cardButtons'>
-            <button className='btn exitBtn' onClick={onClose}>X</button>
-            <button className='btn favBtn'><GiCrownedHeart /></button>
-         </div>
+         <button className='btn exitBtn' onClick={onClose}>X</button>
+         <button className='btn favBtn'><GiBarbedStar /></button>
          <Link to={`/detail/${id}`} className={style.nameSize}>
             <h2>{name}</h2>
          </Link>
@@ -151,3 +134,62 @@ export default function Card({id, name, species, gender, image, onClose}) {
       </DivCard>
    );
 }
+
+
+// const DivCard = styled.div`
+//    display: flex;
+//    flex-Direction: column;
+//    margin: 0 1rem 1rem;
+//    width: 18rem;
+//    /* height: 18rem; */
+//    position: relative;
+//    font-family: 'Press Start 2P'; 
+//    color: white;
+//    cursor: pointer;
+//    transition: visibility 0.8s linear 0.2s;
+//    //tamaño celular
+//    @media screen and (max-width: 1000px) {
+//       width: 15rem;
+//       & img{
+//          width: 15rem;
+//       }
+//    }
+//    .cardBody {
+//       /* position: relative; */
+//       display: flex; 
+//       flex-direction: column;
+//       /* align-items: flex-start; */
+//    }
+//    .cardButtons{
+//       position: absolute;
+//       visibility: visible;
+//       display: flex;
+//       flex-direction: column;
+//       justify-content: space-between;
+//       top: 0%;
+//       bottom: 0%;
+//       width: 100%;
+//       height: 65%;
+//       .btn{
+//          cursor: pointer;
+//          font-size: 1.4rem;
+//          padding: 10px 13px;
+//          border: none;
+//          border-radius: 100%;
+//          transition: background-color 0.8s linear 0.2s;
+//          color: white;
+//          &:hover{
+//             border: 3px none #BBEF55;
+//             background-color: #BBEF55;
+//          }
+//       }
+
+//    }
+//    & img{
+//       z-index: 0;
+//       border-radius: 100%;
+//       object-fit: contain;
+//       transition: border-color 0.8s linear 0.2s;
+//       transition: opacity 0.8s linear 0.2s;
+//    }
+// `;

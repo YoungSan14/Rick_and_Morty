@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import Card from '../Card/Card';
+// import Card from '../Card/Card';
+import Card2 from '../Card/Card2.0';
 
 // import { Route } from 'react-router-dom';
 
@@ -36,7 +37,7 @@ export default function Cards(props) {
          <div className=''>
             {
                characters.map((o) => 
-                  <Card 
+                  <Card2 
                      id={o.id}
                      name={o.name}
                      species={o.species}
