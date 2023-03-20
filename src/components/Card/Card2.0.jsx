@@ -27,7 +27,6 @@ const DivStyled = styled.div`
         }
         .cardBody{
             visibility: visible;
-            /* transition: visibility 0.8s linear 0.2s; */
             transition: visibility 1s linear 1s;
         }
         .cardButtons{
@@ -47,10 +46,6 @@ const DivStyled = styled.div`
         transition: border-color 0.8s linear 0.2s;
         transition: opacity 0.8s linear 0.2s;
         z-index: 0;
-        /* &:hover{
-            border: 5px solid #BBEF55;
-            opacity: 1;
-        } */
     }
     .nameChacter{
         font-size: 1rem;
@@ -61,13 +56,6 @@ const DivStyled = styled.div`
         transition: color 0.8s linear 0.2s;
         margin-top: 5px;
         padding: 0;
-        /* &:hover{
-            color: #BBEF55;
-            .cardImg{
-                border-color: #BBEF55;
-                opacity: 1;
-            }
-        } */
     }
     .cardBody{
         display: flex; 
@@ -92,33 +80,37 @@ const DivStyled = styled.div`
             padding: 10px 10px 5px 10px;
             border: none;
             color: white;
-            /* background-color: #ae2012; */
             background-color: #A7B841;
-            transition: background-color 0.8s linear 0.2s;
             &:hover{
                 .btnFavorite{
                     background-color: #BBEF55; 
                 }
                 .btnClose{
                     background-color: #ae2012;
-                    /* -background-color: #ae2012; */
                 }
             }
         }
         .btnClose{
-            /* X-background-color: #ae2012; */
             transition: background-color 0.8s linear 0.2s;
             &:hover{
                 background-color: #ae2012;
             }
         }
         .btnFavorite{
+            /* transition: background-color 0.8s linear 0.2s; */
             transition: color 0.8s linear 0.2s;
             &:hover{
                 color: #ffaa00;
                 .favorite{
                     color: #ffaa00;
                 }
+            }
+        }
+        .favorite{
+            color: #ffea00;
+            transition: color 0.8s linear 0.2s;
+            &:hover{
+                color: #ffaa00;
             }
         }
     }
@@ -133,13 +125,6 @@ const DivStyled = styled.div`
     }
     .unknown{
         color: #ef233c;
-    }
-    .favorite{
-        color: #ffea00;
-        transition: color 0.8s linear 0.2s;
-        &:hover{
-            color: #ffaa00;
-        }
     }
 `;
 

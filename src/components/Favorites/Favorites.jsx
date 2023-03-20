@@ -8,18 +8,35 @@ import * as actions from '../../redux/actions';
 const DivStyled = styled.div`
     margin-top: 10rem;
     display: flex;
+    flex-direction: column;
     align-content: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1.5rem;
-    font-family: 'Press Start 2P'; 
+    font-family: 'Press Start 2P';
+    gap: 1.5rem; 
     color: white;
+    .cardsFiltros{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        font-family: 'Segoe UI', 'Roboto';
+        color: white;
+        gap: .5rem;
+        /* margin: 0 5px 0 5px; */
+    }
+    .cardsContainer{
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
     .card{
         display: flex;
         flex-Direction: column;
-        font-family: 'Press Start 2P'; 
         color: white;
-        margin: 0 1rem 1rem;
+        /* margin: 0 1rem 1rem; */
         width: 18rem;
         position: relative;
         z-index: 0;
@@ -39,12 +56,9 @@ const DivStyled = styled.div`
         .cardButtons{
             display: flex;
             justify-content: center;
-            /* align-content: flex-end; */
             gap: 5px;
             position: absolute;
             top: 2%;
-            /* height: 310px; */
-            /* width: 100%; */
             z-index: 1;
             .btn{
                 font-size: 1.2rem;
@@ -52,7 +66,6 @@ const DivStyled = styled.div`
                 padding: 10px 10px 5px 10px;
                 border: none;
                 color: white;
-                /* background-color: #ae2012; */
                 background-color: #A7B841;
                 transition: background-color 0.8s linear 0.2s;
                 &:hover{
@@ -69,7 +82,7 @@ const DivStyled = styled.div`
                 }
             }
             .btnFavorite{
-                transition: color 0.8s linear 0.2s;
+                transition: background-color 0.8s linear 0.2s;
                 &:hover{
                     color: #ffaa00;
                     .favorite{
@@ -84,45 +97,72 @@ const DivStyled = styled.div`
             border: 5px solid #D5EA49;
         }
         .nameChacter{
-            /* font-size: 1rem; */
-            margin-top: 10px;
+            /* margin-top: 10px; */
             transition: color 0.8s linear 0.2s;
             text-decoration: none;
             text-decoration-color: none;
             color: white;
-            /* height: 60px; */
         }
     }
 `;
 
 export default function Favorites(){
     const myFavorites = useSelector(state => state.myFavorites);
+    const allFavorites = useSelector(state => state.allFavorites);
     const dispatch = useDispatch();
 
     const handleFavorite = (e) => {
         dispatch(actions.deleteFavorite(e.target.id));
     }
 
+    const handleChange = (e) => {
+        const nameSelect = e.target.name;
+        const value = e.target.value;
+        // console.log(value);
+        // console.log(nameSelect);
+        if(nameSelect === 'filterGender') dispatch(actions.filterCard(value));
+    }
+
     return (
         <DivStyled>
             {
                 (myFavorites.length !== 0) ? 
-                    (myFavorites.map((fav) => {
-                        return (
-                            <div className="card">
-                                <img src={fav.image} alt={fav.name} className="cardImg" draggable="false"/>
-                                <NavLink to={`/detail/${fav.id}`} className="nameChacter">
-                                    <h2>{fav.name}</h2>
-                                </NavLink>
-                                <div className='cardButtons'>
-                                    <button id={fav.id} onClick={handleFavorite} className='btn btnFavorite'>
-                                        <GiStarFormation className='favorite'/>
-                                    </button>
+                    (<>
+                        <div className="cardsFiltros">
+                            Orden:
+                            <select name="order" onChange={handleChange}>
+                                <option value="Ascendente">Ascendente</option>
+                                <option value="Descendente">Descendente</option>
+                            </select>
+                            Filtro genero:
+                            <select name="filterGender" onChange={handleChange}>
+                                <option value="AllGender">Todos</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Genderless">Genderless</option>
+                                <option value="unknown">unknown</option>
+                            </select>
+                        </div>
+                        <div className="cardsContainer">
+                            {
+                            myFavorites.map((fav) => {
+                            return (
+                                <div className="card">
+                                    <img src={fav.image} alt={fav.name} className="cardImg" draggable="false"/>
+                                    <NavLink to={`/detail/${fav.id}`} className="nameChacter">
+                                        <h2>{fav.name}</h2>
+                                    </NavLink>
+                                    <div className='cardButtons'>
+                                        <button id={fav.id} onClick={handleFavorite} className='btn btnFavorite'>
+                                            <GiStarFormation className='favorite'/>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            )
-                        })
-                    )
+                                )
+                            })
+                            }
+                        </div>
+                    </>)
                 :(
                     <h1 style={{position: 'relative'}}>No hay personajes Favoritos</h1>
                 )
