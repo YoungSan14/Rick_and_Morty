@@ -7,6 +7,8 @@ import { FaTimes } from 'react-icons/fa'
 import * as actions from '../../redux/actions';
 /* VERDE PORTAL > #BBEF55 #84E946 #D5EA49 #81D15E*/
 
+// Hacer una funcion qu en el nombre muestre un total de 15 (18 o 20 tambien) caracteres. Si el nombre tiene mas de 15, que muestre 15 caracteres y que agregue tres puntos al final (...) 
+
 const DivStyled = styled.div`
     display: flex;
     flex-Direction: column;
@@ -29,7 +31,10 @@ const DivStyled = styled.div`
             transition: visibility 1s linear 1s;
         }
         .cardButtons{
-            .btn{
+            .btnClose{
+                background-color: #9b2226;
+            }
+            .btnFavorite{
                 background-color: #81D15E;
             }
         }
@@ -49,10 +54,13 @@ const DivStyled = styled.div`
     }
     .nameChacter{
         font-size: 1rem;
+        height: 65px;
         text-decoration: none;
         text-decoration-color: none;
         color: white;
         transition: color 0.8s linear 0.2s;
+        margin-top: 5px;
+        padding: 0;
         /* &:hover{
             color: #BBEF55;
             .cardImg{
@@ -64,7 +72,7 @@ const DivStyled = styled.div`
     .cardBody{
         display: flex; 
         flex-direction: column;
-        align-items: start;
+        align-items: center;
         font-size: 0.7rem;
         visibility: hidden;
     }
@@ -84,10 +92,24 @@ const DivStyled = styled.div`
             padding: 10px 10px 5px 10px;
             border: none;
             color: white;
+            /* background-color: #ae2012; */
             background-color: #A7B841;
             transition: background-color 0.8s linear 0.2s;
             &:hover{
-                background-color: #BBEF55; 
+                .btnFavorite{
+                    background-color: #BBEF55; 
+                }
+                .btnClose{
+                    background-color: #ae2012;
+                    /* -background-color: #ae2012; */
+                }
+            }
+        }
+        .btnClose{
+            /* X-background-color: #ae2012; */
+            transition: background-color 0.8s linear 0.2s;
+            &:hover{
+                background-color: #ae2012;
             }
         }
         .btnFavorite{
@@ -124,10 +146,11 @@ const DivStyled = styled.div`
 export default function Card2({ id, name, species, gender, image, onClose }){
     const [ isFav, setFav ] = useState(false);
     const dispatch = useDispatch();
-    const selector = useSelector(state => state.myFavorites);
+    const myFavorites = useSelector(state => state.myFavorites);
     // const {id, name, species, gender, image} = chacter;
 
     const handleFavorite = () => {
+        // console.log(selector)
         if(isFav){
             setFav(false);
             return dispatch(actions.deleteFavorite(id));
@@ -135,16 +158,12 @@ export default function Card2({ id, name, species, gender, image, onClose }){
             setFav(true);
             return dispatch(actions.addFavorite({id, name, species, gender, image}))
         }
-        // console.log(selector.myFavorites)
     }
 
-    // useEffect(() => {
-    //     selector.myFavorites.forEach((fav) => {
-    //     if (fav.id === id) {
-    //         setFav(true);
-    //     }
-    //     });
-    // }, []);
+    useEffect(() => {
+        const containChacter = myFavorites.filter((fav) => fav.id === id)
+        if(containChacter.length === 1) setFav(true);
+    }, [myFavorites, id])
 
     const genderStyle = (gender) => {
         if(gender === 'Male') return 'male'
@@ -160,7 +179,7 @@ export default function Card2({ id, name, species, gender, image, onClose }){
                     <FaTimes/>
                 </button>
                 <button onClick={handleFavorite} className='btn btnFavorite'>
-                    <GiStarFormation className={(isFav) ? 'favorite' : ''}/>
+                    <GiStarFormation className={(isFav) && 'favorite'}/>
                 </button>
             </div>
             <img src={image} alt={name} className='cardImg'/>
@@ -177,3 +196,21 @@ export default function Card2({ id, name, species, gender, image, onClose }){
 
 
 // export default connect(mapDispatchToProps, null)(Card2);
+
+    // const favoriteContain = () => {
+    //     if(isFav){
+    //         const contain = selector.myFavorites.find((fav) => fav.id === id);
+    //         if (contain !== 'undefined') {
+    //             return true;
+    //         }else{ 
+    //             return false;
+    //         }
+    //     }else{
+    //         return false;
+    //     }
+    // }
+
+    // const favoriteStyle = () => {
+    //     if(favoriteContain(selector)) return 'favorite' 
+    //     else return ''
+    // }

@@ -7,6 +7,7 @@ import BackgroundVideo from './components/BackgroundVideo/BackgroundVideo.jsx'
 import About from './components/About/About'
 import Detail from './components/Detail/Detail'
 import Form  from './components/Form/Form'
+import Favorites from './components/Favorites/Favorites'
 // import Home from './components/Home/Home.jsx'
 
 const URL = "https://be-a-rym.up.railway.app/api";
@@ -96,10 +97,14 @@ function App () {
               (access) ? <About />
               : navigate ("/", {replace: true})
             }/>
-            <Route path="/detail/:idChacter" element={
+            <Route path="/detail/:idChacter" element={ 
               (access) ? <Detail />
               : navigate ("/", {replace: true})
             }/>
+            <Route path="/favorites" element={
+              (access) ? <Favorites />
+              : navigate ("/", {replace: true})
+            } />
           </Routes>
         </>
         )

@@ -87,6 +87,9 @@ export default function Nav({ onSearch, logout }){
                 <NavLink onClick={() => {logout()}} style={{textDecoration: 'none'}}>
                     <h2>Logout</h2>
                 </NavLink>
+                <NavLink to="/favorites" style={{textDecoration: 'none'}}>
+                    <h2>Favoritos</h2>
+                </NavLink>
             </div>
             <div className='divImg'>
                 <NavLink to='/home' >
