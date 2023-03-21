@@ -16,7 +16,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case DELETE_CHACTER_TO_FAVORITES:
             return{
                 ...state,
-                myFavorites: state.myFavorites.filter((chacter) => chacter.id !== payload)
+                myFavorites: state.myFavorites.filter((chacter) => chacter.id !== payload),
+                allFavorites: state.allFavorites.filter((chacter) => chacter.id !== payload)
             } 
         case FILTER:
             return{
@@ -29,8 +30,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
             return{
                 ...state,
                 myFavorites: (payload === 'Ascendente')
-                ? [...state.myFavorites].sort((a,b) => a - b) 
-                : [...state.myFavorites].sort((a,b) => b - a)
+                ? [...state.myFavorites].sort((a,b) => a.id - b.id ) 
+                : [...state.myFavorites].sort((a,b) => b.id - a.id )
             }
         default:
             return{

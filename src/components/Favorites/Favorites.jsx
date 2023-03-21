@@ -118,15 +118,14 @@ export default function Favorites(){
     const handleChange = (e) => {
         const nameSelect = e.target.name;
         const value = e.target.value;
-        // console.log(value);
-        // console.log(nameSelect);
         if(nameSelect === 'filterGender') dispatch(actions.filterCard(value));
+        else if(nameSelect === 'order') dispatch(actions.orderCard(value));
     }
 
     return (
         <DivStyled>
             {
-                (myFavorites.length !== 0) ? 
+                (allFavorites.length !== 0) ? 
                     (<>
                         <div className="cardsFiltros">
                             Orden:

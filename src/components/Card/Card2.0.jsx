@@ -157,6 +157,16 @@ export default function Card2({ id, name, species, gender, image, onClose }){
         if(gender === 'unknown') return 'unknown'
     }
 
+    const nameCaracters = (name) => {
+        if(name.length > 17){
+            let strArr = name.split('');
+            strArr.splice(17, strArr.length, '...');
+            return strArr.join('');
+        }else{
+            return name;
+        }
+    }
+
     return (
         <DivStyled id={id}>
             <div className='cardButtons'>
@@ -169,7 +179,7 @@ export default function Card2({ id, name, species, gender, image, onClose }){
             </div>
             <img src={image} alt={name} className='cardImg'/>
             <NavLink to={`/detail/${id}`} className='nameChacter'>
-                <h2>{name}</h2>
+                <h2>{nameCaracters(name)}</h2>
             </NavLink>
             <div className='cardBody'>
                 <h2>{species}</h2>
