@@ -13,6 +13,29 @@ const DivCards = styled.div`
    right: 0;
    left: 0;
    margin-top: 10rem;
+   .cardsButtons{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1rem;
+      color: white;
+      font-family: 'Press Start 2P';
+      .btn{
+         margin: 0 5px 0 5px;
+         height: 1.7rem;
+         border-radius: 10px;
+         border: none;
+         padding: 0 10px 0 10px;
+         background-color: #81D15E;
+         transition: background-color 0.5s linear 0.2s;
+         color: white;
+         font-size: 1rem;
+         font-weight: 700;
+         &:hover{
+            background-color: #BBEF55;;
+         }
+      }
+   }
    & div{
       display: flex;
       align-content: space-around;
@@ -20,7 +43,6 @@ const DivCards = styled.div`
       flex-wrap: wrap;
       @media screen and (max-width: 1280px){
          justify-content: space-evenly;
-         /* justify-content: flex-start; */
       }
       //tamaño celular
       @media screen and (max-width: 767px) {
@@ -30,10 +52,16 @@ const DivCards = styled.div`
 `;
 
 export default function Cards(props) {
-   const { characters, onClose } = props;
+   const { characters, onClose, characterX } = props;
 
    return (
       <DivCards>
+         <div className="cardsButtons">
+            Agregar personajes Aleatoriamente:
+            <button className='btn' onClick={() => {characterX(2)}}>x2</button> 
+            <button className='btn' onClick={() => {characterX(4)}}>x4</button>
+            <button className='btn' onClick={() => {characterX(8)}}>x8</button>
+         </div>
          <div className=''>
             {
                characters.map((o) => 

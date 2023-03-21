@@ -8,6 +8,7 @@ import About from './components/About/About'
 import Detail from './components/Detail/Detail'
 import Form  from './components/Form/Form'
 import Favorites from './components/Favorites/Favorites'
+import axios from 'axios';
 // import Home from './components/Home/Home.jsx'
 
 const URL = "https://be-a-rym.up.railway.app/api";
@@ -45,8 +46,8 @@ function App () {
     // if (!access && location.pathname === '/home') navigate('/', {replace: true}); 
   }, [access, location, navigate]);
 
-  const characterContain = (obj) => {
-    const exist = characters.filter((c) => c.id === obj.id);
+  const characterContain = (id) => {
+    const exist = characters.filter((c) => c.id === id);
     if(exist.length === 0) return false;
     else return true;
   }
@@ -65,7 +66,7 @@ function App () {
     .then((data) => {
     // console.log(characterContain(data))
     if (data.name) {
-      if(!characterContain(data)){
+      if(!characterContain(data.id)){
         setCharacters((oldChars) => (
           [...oldChars, data]
         ));
@@ -76,6 +77,17 @@ function App () {
       window.alert('No hay personajes con ese ID');
     }
   });
+  }
+
+  const characterX = (num) => {
+    for(let i = 1; i <= num; i++){
+      let numRamdom = Math.floor(Math.random() * 826);
+      if(!characterContain(numRamdom)){
+        axios(`${URL}/character/${numRamdom}?key=${KEY}`)
+        .then((data) => (!characterContain(data.data.id)) && 
+              setCharacters((oldCharacters)=>[...oldCharacters, data.data]))
+      }
+    }
   }
 
   return (
@@ -90,7 +102,7 @@ function App () {
           <Routes>
             {/* <Route path="/" element={<Form />}/> */}
             <Route path="/home" element={
-              (access) ? <Cards characters={characters} onClose={onClose} />
+              (access) ? <Cards characters={characters} onClose={onClose} characterX={characterX}/>
               : navigate ("/", {replace: true})
             }/>
             <Route path="/about" element={

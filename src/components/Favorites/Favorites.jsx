@@ -104,6 +104,20 @@ const DivStyled = styled.div`
             color: white;
         }
     }
+    .cardsFiltros{
+        select{
+	        appearance: none;
+	        -webkit-appearance: none;
+	        -moz-appearance: none;
+            border-radius: 5px; 
+            background: linear-gradient(#040207, rgba(15,20,36,0.5));
+            color: white;
+            outline-color: #BBEF55;
+            option{
+                background-color: black;
+            }
+        }
+    }
 `;
 
 export default function Favorites(){
@@ -136,10 +150,10 @@ export default function Favorites(){
                             Filtro genero:
                             <select name="filterGender" onChange={handleChange}>
                                 <option value="AllGender">Todos</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Genderless">Genderless</option>
-                                <option value="unknown">unknown</option>
+                                <option value="Male" style={{color: '#74C2E7'}}>Male</option>
+                                <option value="Female" style={{color: '#AB73A1'}}>Female</option>
+                                <option value="Genderless" style={{color: '#6E8774'}}>Genderless</option>
+                                <option value="unknown" style={{color: '#ef233c'}}>unknown</option>
                             </select>
                         </div>
                         <div className="cardsContainer">
