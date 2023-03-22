@@ -16,27 +16,6 @@ const NavStyled = styled.nav`
   position: fixed;
   top: 0;
   /* degrade del nav  */
-  /* background: linear-gradient(to bottom, #040207, rgba(15, 20, 36, 0)); */
-  /* background-image: radial-gradient(
-      circle,
-      rgba(36, 49, 96, 0.9),
-      rgba(29, 41, 79, 0.9),
-      rgba(23, 33, 62, 0.9),
-      rgba(18, 26, 46, 0.9),
-      rgba(13, 17, 31, 0.9)
-    ); */
-  /* background: linear-gradient(to top, #040207, rgba(15, 20, 36, 0)),
-    radial-gradient(
-      circle,
-      rgba(36, 49, 96, 0.9),
-      rgba(29, 41, 79, 0.9),
-      rgba(23, 33, 62, 0.9),
-      rgba(18, 26, 46, 0.9),
-      rgba(13, 17, 31, 0.9)
-    );
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover; */
   background: linear-gradient(
       to top,
       rgba(13, 17, 31, 0.9) 0%,
@@ -119,7 +98,6 @@ const NavStyled = styled.nav`
       top: 100%;
       padding: 1rem 2.5rem 1rem 1rem;
       right: 0%;
-      /* background-image: linear-gradient(to top, rgba(187, 239, 85, 0.9), rgba(0, 189, 127, 0.9), rgba(0, 129, 137, 0.9), rgba(0, 69, 98, 0.9), rgba(13, 17, 31, 0.9)); */
       background-image: linear-gradient(
         to top,
         rgba(36, 49, 96, 0.9),
