@@ -14,7 +14,7 @@ const DivStyled = styled.div`
     flex-Direction: column;
     font-family: 'Press Start 2P'; 
     color: white;
-    margin: 0 1rem 1rem;
+    margin: 0 1rem 1rem 1rem;
     width: 18rem;
     position: relative;
     &:hover{
@@ -50,13 +50,20 @@ const DivStyled = styled.div`
     .nameChacter{
         font-size: 1rem;
         height: 65px;
+        /* width: 100%; */
         text-decoration: none;
         text-decoration-color: none;
         color: white;
         transition: color 0.8s linear 0.2s;
-        margin-top: 5px;
+        /* margin-top: 5px; */
         padding: 0;
     }
+    /* .nameChacter{
+        transition: color 0.8s linear 0.2s;
+        text-decoration: none;
+        text-decoration-color: none;
+        color: white;
+    } */
     .cardBody{
         display: flex; 
         flex-direction: column;
@@ -67,12 +74,11 @@ const DivStyled = styled.div`
     .cardButtons{
         display: flex;
         justify-content: center;
-        align-content: flex-end;
         gap: 5px;
         position: absolute;
-        top: 2%;
-        height: 310px;
+        bottom: 32%;
         width: 100%;
+        /* height: 80%; */
         z-index: 1;
         .btn{
             font-size: 1.2rem;
@@ -158,12 +164,13 @@ export default function Card2({ id, name, species, gender, image, onClose }){
     }
 
     const nameCaracters = (name) => {
-        if(name.length > 17){
-            let strArr = name.split('');
-            strArr.splice(17, strArr.length, '...');
-            return strArr.join('');
-        }else{
+        let longitud = 15;
+        if(name.length === longitud || name.length < longitud){ 
             return name;
+        }else if(name.length > longitud){
+            let strArr = name.split('');
+            strArr.splice(longitud-2, strArr.length, '...');
+            return strArr.join('');
         }
     }
 
@@ -182,7 +189,7 @@ export default function Card2({ id, name, species, gender, image, onClose }){
                 <h2>{nameCaracters(name)}</h2>
             </NavLink>
             <div className='cardBody'>
-                <h2>{species}</h2>
+                <h2>{nameCaracters(species)}</h2>
                 <h2 className={genderStyle(gender)}>{gender}</h2>
             </div>
         </DivStyled>

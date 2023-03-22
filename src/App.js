@@ -102,7 +102,7 @@ function App () {
           <Routes>
             {/* <Route path="/" element={<Form />}/> */}
             <Route path="/home" element={
-              (access) ? <Cards characters={characters} onClose={onClose} characterX={characterX}/>
+              (access) ? <Cards characters={characters} onClose={onClose} onSearch={onSearch} characterX={characterX}/>
               : navigate ("/", {replace: true})
             }/>
             <Route path="/about" element={

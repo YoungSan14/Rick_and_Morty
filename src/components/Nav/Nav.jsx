@@ -1,8 +1,8 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-// import { TiThMenuOutline } from 'react-icons/ti';
+import { NavLink } from 'react-router-dom';
+import { FaBars } from 'react-icons/fa';
 import styled from 'styled-components';
-import SearchBar from '../SearchBar/SearchBar';
+// import SearchBar from '../SearchBar/SearchBar';
 import img from '../../assets/logorickandmorty.png'
 
 
@@ -21,25 +21,27 @@ const NavStyled = styled.nav`
     /* & div{
         position: absolute;
     } */
-    .divOps{
+    .divOpciones{
         display: flex;
         align-items: center;
         gap: 1rem;
         margin-left: 15px;
         /* position: relative; */
-        & h2{
+        .icon{
+            visibility: hidden;
+            position: absolute;
+            color: white;
+        }
+        .opciones{
             margin: 0;
             color: white;
-            font-size: 0.8rem;
+            font-size: .5rem;
             cursor: pointer;
             transition: color 0.3s linear 0.2s; 
+            text-decoration: none;
             &:hover{
                 color: #BBEF55;
             }
-            /* position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 2%; */
         }
     }
     .divImg{
@@ -52,19 +54,29 @@ const NavStyled = styled.nav`
             cursor: pointer;
         }
     }
-    .divSearch{
+    .divRelleno{
         position: relative;
+        color: white;
+        visibility: hidden;
         display: flex;
-        justify-content: space-evenly;
         width: 270px;
-        margin-right: 15px;
+        /* margin-right: 15px; */
     }
-    @media screen and (max-width: 900px){
-        .divSearch{
-            justify-content: flex-end;
-            input{
-                width: 50%;
+    @media screen and (max-width: 1000px){
+        /* flex-direction: row-reverse; */
+        .divOpciones{
+            visibility: hidden;
+            position: absolute;
+            .icon{
+                visibility: visible;
+                font-size: 2.5rem;
             }
+        }
+        .divImg{
+            height: 80%;
+        }
+        .divRelleno{
+            position: absolute;
         }
     }
     /* @media screen and (max-width: 1000px){
@@ -76,18 +88,17 @@ const NavStyled = styled.nav`
 `;
 
 export default function Nav({ onSearch, logout }){
-    const location = useLocation();
-
     return (
         <NavStyled>
-            <div className='divOps'>
-                <NavLink to="/about" style={{textDecoration: 'none'}}>
+            <div className='divOpciones'>
+                <FaBars className='icon'/>
+                <NavLink to="/about" className='opciones'>
                     <h2>About</h2>
                 </NavLink>
-                <NavLink onClick={() => {logout()}} style={{textDecoration: 'none'}}>
+                <NavLink onClick={() => {logout()}} className='opciones'>
                     <h2>Logout</h2>
                 </NavLink>
-                <NavLink to="/favorites" style={{textDecoration: 'none'}}>
+                <NavLink to="/favorites" className='opciones'>
                     <h2>Favoritos</h2>
                 </NavLink>
             </div>
@@ -96,11 +107,7 @@ export default function Nav({ onSearch, logout }){
                     <img src={img} alt='logo-rick-and-morty' draggable='false'/>
                 </NavLink>
             </div>
-            <div className='divSearch'>
-                {
-                    (location.pathname === '/home') && <SearchBar onSearch={onSearch}/>
-                }
-            </div>
+            <div className='divRelleno'></div>
         </NavStyled>
     )
 }

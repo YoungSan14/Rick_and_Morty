@@ -1,25 +1,36 @@
 import styled from 'styled-components';
 // import Card from '../Card/Card';
 import Card2 from '../Card/Card2.0';
+import SearchBar from '../SearchBar/SearchBar';
 
-// import { Route } from 'react-router-dom';
 
 const DivCards = styled.div`
-   /* margin: 10rem; */
-   /* display: flex; */
-   /* flex-direction: row; */
    position: absolute;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-content: center;
    top: 0;
    right: 0;
    left: 0;
    margin-top: 10rem;
-   .cardsButtons{
+   color: white;
+   h1{
+      font-family: 'Press Start 2P';
+   }
+   .btn-search-Container{
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
       margin: 1rem;
-      color: white;
-      font-family: 'Press Start 2P';
+      font-family: 'Segoe UI', 'Roboto';
+      .btnContainer{
+         margin: .5rem;
+      }
+      .searchContainer{
+         margin: .5rem;
+      }
       .btn{
          margin: 0 5px 0 5px;
          height: 1.7rem;
@@ -36,7 +47,7 @@ const DivCards = styled.div`
          }
       }
    }
-   & div{
+   .cardsContainer{
       display: flex;
       align-content: space-around;
       justify-content: space-around;
@@ -52,17 +63,24 @@ const DivCards = styled.div`
 `;
 
 export default function Cards(props) {
-   const { characters, onClose, characterX } = props;
+   const { characters, onClose, onSearch, characterX } = props;
 
    return (
       <DivCards>
-         <div className="cardsButtons">
-            Agregar personajes Aleatoriamente:
-            <button className='btn' onClick={() => {characterX(2)}}>x2</button> 
-            <button className='btn' onClick={() => {characterX(4)}}>x4</button>
-            <button className='btn' onClick={() => {characterX(8)}}>x8</button>
+         <h1>Ingresa Personajes de Rick & Morty</h1>
+         <div className="btn-search-Container">
+            <span>Agregar Aleatoriamente:</span>
+            <div className="btnContainer">
+               <button className='btn' onClick={() => {characterX(2)}}>x2</button> 
+               <button className='btn' onClick={() => {characterX(4)}}>x4</button>
+               <button className='btn' onClick={() => {characterX(8)}}>x8</button>
+            </div>
+            <span>Buscar por ID:</span>
+            <div className="searchContainer">
+               <SearchBar onSearch={onSearch}/>
+            </div>
          </div>
-         <div className=''>
+         <div className='cardsContainer'>
             {
                characters.map((o) => 
                   <Card2 

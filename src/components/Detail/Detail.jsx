@@ -7,13 +7,22 @@ const URL = "https://be-a-rym.up.railway.app/api";
 const KEY = "dd16337f0a28.9e14f74e16d275d648d6";
 
 const DivStyled = styled.div`
-    height: 100vh;
-    width: 100vw;
     display: flex;
+    flex-wrap: nowrap;
     justify-content: space-evenly;
     align-items: center;
-    position: relative;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    /* margin-top: 9rem; */
     font-family: 'Press Start 2P';
+    z-index: 0;
+    .msjLoad{
+        color: white;
+        position: relative;
+    }
     & img{
         border-radius: 100%;
         object-fit: contain;
@@ -25,7 +34,7 @@ const DivStyled = styled.div`
         color: white;
     }
     .male{
-    color: #74C2E7;
+        color: #74C2E7;
     }
     .female{
         color: #AB73A1;
@@ -35,6 +44,26 @@ const DivStyled = styled.div`
     }
     .unknown{
         color: #ef233c;
+    }
+    @media screen and (max-width: 850px){
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        /* align-content: flex-end; */
+        /* justify-content: center; */
+        img{
+            align-self: flex-end;
+        }
+        .info{
+            align-self: flex-start;
+            font-size: .8rem;
+            margin: 0;
+            padding: 0;
+        }
+        .msjLoad{
+            color: white;
+            position: relative;
+            align-content: center;
+        }
     }
 `;
 
@@ -87,7 +116,7 @@ export default function Detail(){
             )
             : (
                 <>
-                    <h1 style={{color: 'white'}}>Cargando...</h1>
+                    <h1 className='msjLoad'>Cargando...</h1>
                 </>
             )
             }
