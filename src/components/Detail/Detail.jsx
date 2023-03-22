@@ -47,14 +47,17 @@ const DivStyled = styled.div`
     }
     @media screen and (max-width: 850px){
         flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
         margin-top: 2rem;
         /* align-content: flex-end; */
         /* justify-content: center; */
         img{
-            align-self: flex-end;
+            /* align-self: flex-end; */
+            width: 250px;
         }
         .info{
-            align-self: flex-start;
+            /* align-self: flex-start; */
             font-size: .8rem;
             margin: 0;
             padding: 0;

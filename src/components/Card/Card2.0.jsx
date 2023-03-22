@@ -165,12 +165,15 @@ export default function Card2({ id, name, species, gender, image, onClose }){
 
     const nameCaracters = (name) => {
         let longitud = 15;
+        let nameArr = name.split('');
         if(name.length === longitud || name.length < longitud){ 
             return name;
+        }else if(name === "Mythological Creature"){
+            nameArr.splice(longitud-4, nameArr.length, '...');
+            return nameArr.join('');
         }else if(name.length > longitud){
-            let strArr = name.split('');
-            strArr.splice(longitud-2, strArr.length, '...');
-            return strArr.join('');
+            nameArr.splice(longitud-2, nameArr.length, '...');
+            return nameArr.join('');
         }
     }
 
@@ -184,7 +187,7 @@ export default function Card2({ id, name, species, gender, image, onClose }){
                     <GiStarFormation className={(isFav) && 'favorite'}/>
                 </button>
             </div>
-            <img src={image} alt={name} className='cardImg'/>
+            <img src={image} alt={name} className='cardImg' draggable='false' />
             <NavLink to={`/detail/${id}`} className='nameChacter'>
                 <h2>{nameCaracters(name)}</h2>
             </NavLink>
