@@ -57,10 +57,10 @@ export const NavStyled = styled.nav`
     flex-direction: row-reverse;
     background: linear-gradient(
         to top,
-        rgba(13, 17, 31, 0.9),
-        rgba(18, 26, 46, 0.9),
-        rgba(23, 33, 62, 0.9),
-        rgba(29, 41, 79, 0.9),
+        rgba(13, 17, 31, 0.9) 50%,
+        rgba(18, 26, 46, 0.9) ,
+        rgba(23, 33, 62, 0.9) ,
+        rgba(29, 41, 79, 0.9) ,
         rgba(36, 49, 96, 0.9)
       ),
       radial-gradient(circle, #040207, rgba(15, 20, 36, 0) 70%);
@@ -75,14 +75,16 @@ export const NavStyled = styled.nav`
       font-size: 2.5rem;
       transition: color 0.2s linear 0.2s;
       &:hover {
-        color: #bbef55;
+        /* color: #bbef55; */
+        color: #A7B841;
         ~ .divOpciones {
           visibility: visible;
         }
       }
     }
     .active {
-      color: #bbef55;
+      /* color: #bbef55; */
+      color: #A7B841;
     }
     .divOpciones {
       flex-direction: column;
@@ -92,8 +94,10 @@ export const NavStyled = styled.nav`
       transition: visibility 0.4s linear 0.2s;
       visibility: hidden;
       top: 100%;
-      padding: 1rem 2.5rem 1rem 1rem;
+      padding: 1rem 2.5rem 1rem 2.5rem;
+      border-radius: 0 0 10px 10px;
       right: 0%;
+      z-index: 6;
       background-image: linear-gradient(
         to top,
         rgba(36, 49, 96, 0.9),
@@ -102,8 +106,11 @@ export const NavStyled = styled.nav`
         rgba(18, 26, 46, 0.9),
         rgba(13, 17, 31, 0.9)
       );
-      /* background-position: bottom center; */
-      z-index: 6;
+      .opciones{
+        &:hover{
+          color: #A7B841;
+        }
+      }
       &:hover {
         visibility: visible;
       }
