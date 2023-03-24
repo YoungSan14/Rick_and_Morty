@@ -25,7 +25,7 @@ const validation = (inputType, form, error, setError) => {
     }
 }
 
-export default function Form({ login }){
+export default function Form({ login, continuarSinLogin }){
     const [ form , setForm ] = useState({
         email: '',
         password: '',
@@ -85,7 +85,8 @@ export default function Form({ login }){
                     value={form.password}
                     className={(!changeForm.password) ? 'base' : (!error.password) ? 'valid' : 'invalid'}
                 />   
-                <button type='submit'>Iniciar Sesión</button>
+                <button type='submit' className="btn">Iniciar Sesión</button>
+                <button type='button' className="btn" onClick={() => continuarSinLogin()}>Continuar Sin registro</button>
             </form>
         </FormStyled>
     )
