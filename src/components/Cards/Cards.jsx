@@ -23,7 +23,9 @@ export default function Cards({ characters, onClose, onSearch, addCharacterX }) 
             </div>
          </div>
          <div className='cardsContainer'>
-            {
+            {(!characters) ? (
+               <h1 className="msjLoad">Cargando...</h1>
+            ):(            
                characters.map((o) => 
                   <Card 
                      id={o.id}
@@ -34,7 +36,7 @@ export default function Cards({ characters, onClose, onSearch, addCharacterX }) 
                      onClose={onClose}
                      key={o.id}
                   />
-               )
+               ))
             }
          </div>
       </CardsStyled>

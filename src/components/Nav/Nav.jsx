@@ -41,7 +41,7 @@ export default function Nav({ onSearch, logout }) {
         </NavLink>
       </div>
       <div className="divImg">
-        <NavLink to="/home">
+        <NavLink to="/">
           <img src={img} alt="logo-rick-and-morty" draggable="false" />
         </NavLink>
       </div>

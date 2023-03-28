@@ -30,7 +30,7 @@ export default function NotFound (){
             <h1>ERROR NO EXISTE PAGINA</h1>
             <h2>Peace Among Worlds</h2>
             <div className="imgContainer">
-                <img src={img} alt="peace-among-worlds"/>
+                <img src={img} alt="peace-among-worlds" draggable="false"/>
             </div>
         </NotFoundStyled>
     )

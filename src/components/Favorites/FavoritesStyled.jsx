@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 export const FavoritesStyled = styled.div`
-    margin-top: 10rem;
+    margin-top: 8rem;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -11,6 +11,11 @@ export const FavoritesStyled = styled.div`
     font-family: 'Press Start 2P';
     gap: 1.5rem; 
     color: white;
+    .title{
+        position: relative;
+        padding: .5rem;
+        color: #BBEF55;
+    }
     .cardsFiltros{
         position: relative;
         display: flex;

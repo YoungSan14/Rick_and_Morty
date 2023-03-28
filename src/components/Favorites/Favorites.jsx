@@ -27,6 +27,7 @@ export default function Favorites(){
             {
                 (allFavorites.length !== 0) ? 
                     (<>
+                        <h2 className='title'>Personajes Favoritos</h2>
                         <div className="cardsFiltros">
                             Orden:
                             <select name="order" onChange={handleChange}>

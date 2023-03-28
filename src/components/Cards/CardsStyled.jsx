@@ -14,6 +14,10 @@ export const CardsStyled = styled.div`
   h1 {
     font-family: "Press Start 2P";
   }
+  .msjLoad {
+    color: white;
+    position: relative;
+  }
   .btn-search-Container {
     display: flex;
     align-items: center;

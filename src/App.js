@@ -12,11 +12,20 @@ function App() {
   const password = "carp91218";
   const charactersRandom = [];
 
+  useEffect(() => {
+    if(!access) navigate ("/login");
+    if(access && location.pathname === "/login"){
+        navigate ("/", {replace: true});
+    }
+    // eslint-disable-next-line
+  }, [])
+
+
   const login = (userData) => {
     if (userData.email === email && userData.password === password) {
       // alert('Inicio Exitoso!!');
       setAccess(true);
-      navigate("/home", { replace: true });
+      navigate("/", { replace: true });
     } else {
       alert("El usuario o la contraseña son incorrectos");
     }
@@ -24,20 +33,15 @@ function App() {
 
   const continuarSinLogin = () => {
     setAccess(true);
+    navigate("/", {replace: true});
   }
 
   const logout = () => {
     setAccess(false);
-    navigate("/", { replace: true });
+    navigate("/login", { replace: true });
   };
 
-  useEffect(() => {
-    if (!access) navigate("/");
-    if (access && location.pathname === "/")
-      navigate("/home", { replace: true });
-    // una vez que me logue, y este en la ruta '/home', NO pueda volver a la ruta '/'
-    // if (!access && location.pathname === '/home') navigate('/', {replace: true});
-  }, [access, location, navigate]);
+
 
   const characterContain = (id) => {
     const exist = characters.filter((c) => c.id === id);
@@ -61,10 +65,10 @@ function App() {
           if (!characterContain(data.id)) {
             setCharacters((oldChars) => [...oldChars, data]);
           } else {
-            window.alert(`${data.name} ya fue ingresado`);
+            alert(`${data.name} ya fue ingresado`);
           }
         } else {
-          window.alert("No hay personajes con ese ID");
+          alert("No hay personajes con ese ID");
         }
       });
   };
@@ -75,7 +79,7 @@ function App() {
     while (i <= num) {
       let numRamdom = Math.floor(Math.random() * 826);
       if (
-        !charactersRandom.includes(numRamdom) &&
+        !characterContain(numRamdom) &&
         !chactersId.includes(numRamdom)
       ) {
         chactersId.push(numRamdom);
@@ -85,41 +89,41 @@ function App() {
     charactersRandom.push(...chactersId);
     if (chactersId.length === num) {
       chactersId.forEach((id) => {
-        axios(`${URL}/character/${id}?key=${KEY}`).then((data) =>
+        axios(`${URL}/character/${id}?key=${KEY}`)
+        .then((data) =>
           setCharacters((oldCharacters) => [...oldCharacters, data.data])
-        );
+        )
+        .catch((error) => console.log(error))
       });
     }
   };
+
+// Hay que cambiar la ruta de Form, crear una que sea "/login" y asignarle a Cards la ruta "/", eliminar la ruta "/home"
 
   return (
     <div className="App">
       <BackgroundVideo />
       <div>
-        {location.pathname === "/" && !access ? (
-          <Form login={login} continuarSinLogin={continuarSinLogin}/>
-        ) : (
+        {(access) ? (
           <>
             <Nav onSearch={onSearch} logout={logout} />
             <Routes>
-              <Route
-                path="/home"
-                element={
-                  <Cards
-                    characters={characters}
-                    onClose={onClose}
-                    onSearch={onSearch}
-                    addCharacterX={addCharacterX}
-                  />
-                }
-              />
+              <Route path="/"element={<Cards characters={characters} onClose={onClose} onSearch={onSearch} addCharacterX={addCharacterX}/>} />
               <Route path="/about" element={<About />} />
               <Route path="/detail/:idChacter" element={<Detail />} />
               <Route path="/favorites" element={<Favorites />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </>
-        )}
+        ):(
+          <>
+            <Routes>
+              <Route path="/login" element={<Form login={login} continuarSinLogin={continuarSinLogin}/>}/>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </>
+        )
+        }
       </div>
     </div>
   );
